@@ -1,0 +1,9 @@
+.hecho-true{
+	 text-decoration: line-through;
+	 color: grey;
+}
+
+.hecho-false{
+	 text-decoration: underline;
+	 color: blue;
+}

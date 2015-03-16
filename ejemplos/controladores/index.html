@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Controladores</title>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<link href="../../css/bootstrap.min.css" type="text/css" rel="stylesheet">
+		<link href="css/listadetareas.css" type="text/css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+		<script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="../../js/angular.min.js" type="text/javascript"></script>
+		<script src="js/listadetareas.js" type="text/javascript"></script>
+	</head>
+	<body ng-app>
+		<h2>Lista de Tareas</h2>
+		<div ng-controller="ControladorTareas">
+			<form ng-submit="eliminar()">
+				<span>{{restantes()}} de {{tareas.length}}</span>
+				<button type="submit" class="btn btn-danger">Eliminar</button>
+			</form>
+			<ul class="unstyled">
+				<li ng-repeat="tarea in tareas">
+					<input type="checkbox" ng-model="tarea.hecho">
+					<span class="hecho-{{tarea.hecho}}">{{tarea.texto}}</span>
+				</li>
+			</ul>
+			<form ng-submit="agregarTarea()">
+				<input type="texto" size="30" placeholder="Agregar una nueva tarea" ng-model="textoNuevaTarea">
+				<button class="btn btn-primary" type="submit">Agregar</button>
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Filtros</title>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<link href="../../css/bootstrap.min.css" type="text/css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+		<script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="../../js/angular.min.js" type="text/javascript"></script>
+		<script src="js/filtros.js" type="text/javascript"></script>
+		<script src="js/angular-locale_es-co.js" type="text/javascript"></script>
+	</head>
+	<body ng-app>
+		<div class="container" ng-controller="ControladorFiltros">
+			<h1>Filtros Nativos de AngularJS</h1>
+			<hr>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+						<input type="text" class="form-control" placeholder="Buscare Empleado" ng-model="buscar.nombre">
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>
+										<a href="" ng-click="ordenarPor('nombre')">
+											Nombre/s
+										</a>
+										<span class="caret" style="cursor: pointer" ng-click="ordenarPor('-nombre')"></span>
+									</th>
+									<th>Apellido Paterno</th>
+									<th>Apellido Materno</th>
+									<th>Primer Dia de trabajo</th>
+									<th>Telefono</th>
+									<th>Salario</th>
+									<th>Bono</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="empleado in empleados | orderBy:ordenSeleccionado | filter:buscar">
+									<td>{{empleado.nombre}}</td>
+									<td>{{empleado.paterno | uppercase}}</td>
+									<td>{{empleado.materno | lowercase}}</td>
+									<td>{{empleado.primerDia | date:'fullDate'}} a las {{empleado.primerDia | date:'h:mma'}}</td>
+									<td>{{empleado.telefono}}</td>
+									<td>{{empleado.salario | currency}}</td>
+									<td>% {{empleado.bono | number:2}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
